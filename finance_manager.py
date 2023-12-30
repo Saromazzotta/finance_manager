@@ -2,17 +2,17 @@ import csv
 import gspread
 import time
 from pprint import pprint
-from expenses import SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT
+from expenses import SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT, MONEY_TRANSFERS_OUT, GROCERIES, PERSON
 
 
 
-MONTH = "november"
+MONTH = "december"
 
 file = f"sofi_{MONTH}.csv"
 
 transactions = []
 
-def sofi_bank(file, SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT):
+def sofi_bank(file, SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT, MONEY_TRANSFERS, GROCERIES):
 
     with open(file, mode='r') as csv_file:
         csv_reader = csv.reader(csv_file)
@@ -24,11 +24,14 @@ def sofi_bank(file, SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCU
                 print("Converted Float:", amount)
             except ValueError:
                 print("Invalid string format for conversion to float")
-            
             if name in CREDIT_CARD_NAMES:
                 category = "Credit Card Payment"
             elif name in SUBSCRIPTION_NAMES:
                 category = "Subscriptions"
+            elif name in MONEY_TRANSFERS:
+                category = "Money Transfers"
+            elif name in GROCERIES:
+                category = "Groceries"
             else:
                 category = 'Other'
 
@@ -41,7 +44,7 @@ sh = sa.open("Personal Finances")
 
 wks = sh.worksheet(f"{MONTH}")
 
-rows = sofi_bank(file, SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT)
+rows = sofi_bank(file, SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT, MONEY_TRANSFERS_OUT, GROCERIES)
 
 pprint(rows)
 
