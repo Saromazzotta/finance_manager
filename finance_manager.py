@@ -2,6 +2,7 @@ import csv
 import gspread
 import time
 from pprint import pprint
+from expenses import SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT
 
 
 
@@ -10,14 +11,6 @@ MONTH = "november"
 file = f"sofi_{MONTH}.csv"
 
 transactions = []
-
-SUBSCRIPTION_NAMES = {"TECHLOCKDOWN.COM", "APPLE.COM/BILL", "APPLECARE PLAN", }
-
-CREDIT_CARD_NAMES = {"WELLS FARGO CARD", "CAPITAL ONE", "CHASE CREDIT CRD", "BEST BUY"}
-
-MEDICAL_NAMES = {"RICHARD LILL, LCSW L", "VCI*VITACOST.COM", }
-
-HAIRCUT = {"SQ *FADED BY JAY"}
 
 def sofi_bank(file, SUBSCRIPTION_NAMES, CREDIT_CARD_NAMES, MEDICAL_NAMES, HAIRCUT):
 
