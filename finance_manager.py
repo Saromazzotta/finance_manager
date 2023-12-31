@@ -2,7 +2,8 @@ import csv
 import gspread
 import time
 from pprint import pprint
-from expenses import (SUBSCRIPTION_NAMES, 
+from expenses import (SALARY,
+                        SUBSCRIPTION_NAMES, 
                         CREDIT_CARD_NAMES, 
                         MEDICAL_NAMES, 
                         HYGIENE, 
@@ -21,7 +22,8 @@ file = f"sofi_{MONTH}.csv"
 
 transactions = []
 
-def sofi_bank(file, 
+def sofi_bank(file,
+                SALARY, 
                 SUBSCRIPTION_NAMES, 
                 CREDIT_CARD_NAMES, 
                 MEDICAL_NAMES, 
@@ -69,8 +71,10 @@ def sofi_bank(file,
                 category = "Medical"
             elif name in GAS_AND_TRANSPORTATION:
                 category = "Gas & Transportation"
-            elif amount > 0:
-                category = "Income"
+            elif name in SALARY:
+                category = "Salary"
+            elif amount > 0 and not "JLD FITNESS LLC":
+                category = "Other Income"
             else:
                 category = 'Other'
 
@@ -90,7 +94,9 @@ sh = sa.open("Personal Finances")
 wks = sh.worksheet(f"{MONTH}")
 
 # Get categorized transactions
-rows = sofi_bank(file, SUBSCRIPTION_NAMES, 
+rows = sofi_bank(file, 
+                    SALARY,
+                    SUBSCRIPTION_NAMES, 
                     CREDIT_CARD_NAMES, 
                     MEDICAL_NAMES, 
                     HYGIENE, 
