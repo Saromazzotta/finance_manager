@@ -12,7 +12,7 @@ from expenses import (SALARY,
                         PERSON, 
                         EATING_OUT, 
                         ENTERTAINMENT,
-                        TRANSPORTATION_AND_TRAVEL
+                        TRANSPORT_AND_TRAVEL
     )
 
 
@@ -34,7 +34,7 @@ def sofi_bank(file,
                 EATING_OUT, 
                 PERSON, 
                 ENTERTAINMENT,
-                TRANSPORTATION_AND_TRAVEL):
+                TRANSPORT_AND_TRAVEL):
 
     with open(file, mode='r') as csv_file:
         csv_reader = csv.reader(csv_file)
@@ -70,8 +70,8 @@ def sofi_bank(file,
                 category= "Hygiene"
             elif name in MEDICAL_NAMES:
                 category = "Medical"
-            elif name in TRANSPORTATION_AND_TRAVEL:
-                category = "Gas & Transportation"
+            elif name in TRANSPORT_AND_TRAVEL:
+                category = "Transport & Travel"
             elif amount > 0 and name != "JLD FITNESS LLC":
                 category = "Other Income"
             elif name in SALARY:
@@ -108,7 +108,7 @@ rows = sofi_bank(file,
                     PERSON, 
                     EATING_OUT, 
                     ENTERTAINMENT,
-                    TRANSPORTATION_AND_TRAVEL
+                    TRANSPORT_AND_TRAVEL
 )
 
 pprint(rows)
