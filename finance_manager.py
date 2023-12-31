@@ -15,7 +15,7 @@ from expenses import (SUBSCRIPTION_NAMES,
 
 
 
-MONTH = "december"
+MONTH = "november"
 
 file = f"sofi_{MONTH}.csv"
 
@@ -69,6 +69,8 @@ def sofi_bank(file,
                 category = "Medical"
             elif name in GAS_AND_TRANSPORTATION:
                 category = "Gas & Transportation"
+            elif amount > 0:
+                category = "Income"
             else:
                 category = 'Other'
 
