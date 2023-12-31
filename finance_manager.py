@@ -16,7 +16,7 @@ from expenses import (SALARY,
 
 
 
-MONTH = "november"
+MONTH = "december"
 
 file = f"sofi_{MONTH}.csv"
 
@@ -58,11 +58,11 @@ def sofi_bank(file,
             elif name in SUBSCRIPTION_NAMES:
                 category = "Subscriptions"
             elif name in MONEY_TRANSFERS:
-                category = "Money Transfers"
+                category = "Money Transfers Out"
+            elif name in EATING_OUT and name != GROCERIES:
+                category = "Eating Out"
             elif name in GROCERIES:
                 category = "Groceries"
-            elif name in EATING_OUT:
-                category = "Eating Out"
             elif name in ENTERTAINMENT:
                 category = "Entertainment"
             elif name in HYGIENE:
@@ -71,12 +71,14 @@ def sofi_bank(file,
                 category = "Medical"
             elif name in GAS_AND_TRANSPORTATION:
                 category = "Gas & Transportation"
+            elif amount > 0 and name != "JLD FITNESS LLC":
+                category = "Other Income"
             elif name in SALARY:
                 category = "Salary"
-            elif amount > 0 and not "JLD FITNESS LLC":
-                category = "Other Income"
             else:
                 category = 'Other'
+
+            # pprint(type(name), name)
 
             transaction = ((date, name, category, amount))
             transactions.append(transaction)
@@ -108,6 +110,7 @@ rows = sofi_bank(file,
                     GAS_AND_TRANSPORTATION)
 
 pprint(rows)
+
 
 for row in rows:
     wks.insert_row([row[0], row[1], row[2], row[3]] ,8)
