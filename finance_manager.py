@@ -8,7 +8,8 @@ from expenses import (SALARY,
                         MEDICAL_BILLS, 
                         HYGIENE, 
                         MONEY_TRANSFERS_OUT, 
-                        GROCERIES, 
+                        GROCERIES,
+                        GIFTS,
                         PERSON, 
                         EATING_OUT, 
                         ENTERTAINMENT,
@@ -18,7 +19,7 @@ from expenses import (SALARY,
 
 
 
-MONTH = "november"
+MONTH = "december"
 
 file = f"sofi_{MONTH}.csv"
 
@@ -31,7 +32,8 @@ def sofi_bank(file,
                 MEDICAL_BILLS, 
                 HYGIENE, 
                 MONEY_TRANSFERS, 
-                GROCERIES, 
+                GROCERIES,
+                GIFTS,
                 EATING_OUT, 
                 PERSON, 
                 ENTERTAINMENT,
@@ -50,20 +52,21 @@ def sofi_bank(file,
 
             if row[3] == 'Amount':
                 continue
+
             try:
                 amount = float(row[3])
                 print("Converted Float:", amount)
             except ValueError:
                 print("Invalid string format for conversion to float")
+
+            print("Name from CSV:", repr(name))
                 
             if name in CREDIT_CARD_NAMES:
                 category = "Credit Card Payments"
             elif name in SUBSCRIPTION_NAMES:
                 category = "Subscriptions"
             elif name in MONEY_TRANSFERS:
-                category = "Money Transfers Out"
-            elif name in GROCERIES:
-                category = "Groceries"
+                category = "Money Transfers Out" 
             elif name in ENTERTAINMENT:
                 category = "Entertainment"
             elif name in EDUCATION: 
@@ -78,11 +81,17 @@ def sofi_bank(file,
                 category = "Other Income"
             elif name in SALARY:
                 category = "Salary"
-            elif name.strip().lower() in [entry.strip().lower() for entry in EATING_OUT]:
+            elif name in GROCERIES:
+                category = "Groceries"
+            elif name in GIFTS:
+                category = "Gifts"
+            elif name in EATING_OUT:
                 category = "Eating Out"
             else:
+                category = "Other"
                 print("Unknown case - Name:", repr(name), "Amount:", amount)
-                category = 'Other'
+
+            pprint(name)
 
 
             transaction = ((date, name, category, amount))
@@ -108,7 +117,8 @@ rows = sofi_bank(file,
                     MEDICAL_BILLS, 
                     HYGIENE, 
                     MONEY_TRANSFERS_OUT, 
-                    GROCERIES, 
+                    GROCERIES,
+                    GIFTS,
                     PERSON, 
                     EATING_OUT, 
                     ENTERTAINMENT,
@@ -119,6 +129,6 @@ rows = sofi_bank(file,
 pprint(rows)
 
 
-# for row in rows:
-#     wks.insert_row([row[0], row[1], row[2], row[3]] ,8)
-#     time.sleep(2)
+for row in rows:
+    wks.insert_row([row[0], row[1], row[2], row[3]] ,8)
+    time.sleep(2)
