@@ -9,7 +9,6 @@ Finance Manager, a Python script designed to simplify financial data management.
 - **Google Sheets Integration:** Utilize the gspread API to effortlessly transfer your categorized transactions into a Google Sheet, offering an easy to read interface for further analysis.
 
 
-![Alt Text](/images/output.gif)
-<img src="/images/output.gif" width="400" />
+<img src="/images/output.gif" width="800" />
 
 ![picture of spread sheet](/images/finance_manager_example.png)
