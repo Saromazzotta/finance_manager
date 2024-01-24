@@ -10,5 +10,6 @@ Finance Manager, a Python script designed to simplify financial data management.
 
 
 ![Alt Text](/images/output.gif)
+<img src="/images/output.gif" width="400" />
 
 ![picture of spread sheet](/images/finance_manager_example.png)
