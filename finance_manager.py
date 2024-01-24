@@ -1,6 +1,7 @@
 import csv
 import gspread
 import time
+from sys import argv
 from pprint import pprint
 from expenses import (SALARY,
                         SUBSCRIPTION_NAMES, 
@@ -19,7 +20,7 @@ from expenses import (SALARY,
 
 
 
-MONTH = "december"
+MONTH = argv[1]
 
 file = f"sofi_{MONTH}.csv"
 
@@ -104,7 +105,7 @@ def sofi_bank(file,
 sa = gspread.service_account()
 
 # Open the Google Sheets file
-sh = sa.open("Personal Finances")
+sh = sa.open("Personal Finances 2023")
 
 # Get the worksheet by name
 wks = sh.worksheet(f"{MONTH}")
