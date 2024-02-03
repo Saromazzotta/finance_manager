@@ -105,7 +105,7 @@ def sofi_bank(file,
 sa = gspread.service_account()
 
 # Open the Google Sheets file
-sh = sa.open("Personal Finances 2023")
+sh = sa.open("Personal Finances 2024")
 
 # Get the worksheet by name
 wks = sh.worksheet(f"{MONTH}")
