@@ -1,0 +1,6 @@
+#Ignore all .csv files
+*.csv
+
+#Ignore specific files
+expenses.py
+_pycache_
